@@ -9,6 +9,10 @@ class Config:
         return os.getenv("BOT_TOKEN", "7706032185:AAFF7LzJyAlrwp1IdAhum0GwtXWdPQTQcog")
     
     @property
+    def redis_url(self):
+        return f"redis://{os.getenv('REDIS_HOST', 'localhost')}:{os.getenv('REDIS_PORT', '6379')}/0"
+
+    @property
     def admin_ids(self):
         raw_ids = os.getenv("ADMIN_IDS", "7724035951").split('#')[0].strip()
         return [int(i.strip()) for i in raw_ids.split(',') if i.strip().isdigit()]
